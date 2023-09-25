@@ -34,6 +34,7 @@ test:
     - pytest-mock
     - pytest-asyncio
     - psycopg2
+    - postgresql  # [win]
     - pymysql  # [not s390x]
   commands: 
     - pip check
