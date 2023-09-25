@@ -10,7 +10,7 @@ source:
 
 build:
   number: 0
-  skip: True  # [py<37]
+        - True    # [py<37]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
@@ -18,7 +18,6 @@ requirements:
     - python
     - pip
     - setuptools
-    - setuptools_scm
     - wheel
   run:
     - python
@@ -27,10 +26,18 @@ requirements:
 test:
   imports:
     - sqlalchemy_jsonfield
+  source_files:
+    - functional_test/
   requires: 
     - pip
+    - pytest >= 6.0
+    - pytest-mock
+    - pytest-asyncio
+    - psycopg2
+    - pymysql
   commands: 
     - pip check
+    - pytest -vv functional_test/
 
 about:
   home: https://github.com/penguinolog/sqlalchemy_jsonfield
