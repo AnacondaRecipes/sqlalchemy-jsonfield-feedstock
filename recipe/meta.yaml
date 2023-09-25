@@ -10,7 +10,7 @@ source:
 
 build:
   number: 0
-        - True    # [py<37]
+  skip: true  # [py<37]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
@@ -34,10 +34,10 @@ test:
     - pytest-mock
     - pytest-asyncio
     - psycopg2
-    - pymysql
+    - pymysql  # [not s390x]
   commands: 
     - pip check
-    - pytest -vv functional_test/
+    - pytest -vv functional_test/  # [not s390x]
 
 about:
   home: https://github.com/penguinolog/sqlalchemy_jsonfield
