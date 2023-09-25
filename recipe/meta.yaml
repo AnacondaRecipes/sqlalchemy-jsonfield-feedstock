@@ -1,32 +1,45 @@
 {% set name = "SQLAlchemy-JSONField" %}
-{% set version = "1.0.0" %}
+{% set version = "1.0.1.post0" %}
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 766d0b25bdebf53f67ccfaf9975987f921965987b37bae3a95ba6e7855afe98b
+  sha256: 72a5e714fe0493d2660abd7484a9fd9f492f493a0856288dd22a5decb29f5dc4
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv
-  noarch: python
+  skip: true  # [py<37]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   host:
-    - python >=3.5
+    - python
     - pip
     - setuptools
     - setuptools_scm
+    - wheel
   run:
-    - python >=3.5
+    - python
     - sqlalchemy
-    - typing >=3.6
 
 test:
   imports:
     - sqlalchemy_jsonfield
+  source_files:
+    - functional_test/
+  requires: 
+    - pip
+    - pytest >= 6.0
+    - pytest-mock
+    - pytest-asyncio
+    - psycopg2
+    - postgresql  # [win]
+    - pymysql  # [not s390x]
+  commands: 
+    - pip check
+    - pytest -vv functional_test/  # [not s390x]
 
 about:
   home: https://github.com/penguinolog/sqlalchemy_jsonfield
