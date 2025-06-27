@@ -41,12 +41,6 @@ test:
   commands: 
     - pip check
     - pytest -vv functional_test/
-  downstreams:
-    - airflow 1.10.10
-    - airflow 1.10.12
-    - airflow 1.10.7
-    - airflow 2.3.3  # [py>=311]
-    - airflow 2.4.3  # [py>=311]
 
 about:
   home: https://github.com/penguinolog/sqlalchemy_jsonfield
