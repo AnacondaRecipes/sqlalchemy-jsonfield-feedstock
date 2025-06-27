@@ -20,6 +20,7 @@ requirements:
 # Lower bound for setuptools not required but recommended by upstream
     - setuptools >=61.0.0
     - setuptools_scm >=6.2
+    - toml
     - wheel
   run:
     - python
