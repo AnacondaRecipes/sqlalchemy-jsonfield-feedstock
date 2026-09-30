@@ -23,7 +23,6 @@ requirements:
     - setuptools_scm >=6.2
     - toml
     - wheel
-    - setuptools-scm >=6.2
   run:
     - python
     - sqlalchemy
